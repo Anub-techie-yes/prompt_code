@@ -1,0 +1,312 @@
+You are a senior frontend architect and full-stack engineer.
+
+Your task is to MODIFY and ENHANCE an existing AI QA automation platform UI.
+
+DO NOT rewrite the UI from scratch.
+
+The existing platform already supports:
+
+* live API testing
+* BDD generation
+* test case generation
+* Confluence integration
+
+The current UI is insufficient for the new context-driven architecture.
+
+Your job is to upgrade the UI incrementally to support:
+
+1. Context ingestion
+2. Repository scanning
+3. Swagger ingestion
+4. RAG-based generation workflows
+5. Context visibility
+6. Better orchestration between modules
+
+---
+
+# IMPORTANT ENGINEERING RULES
+
+---
+
+* Preserve existing working UI flows
+* Reuse existing components where possible
+* Extend instead of rewrite
+* Keep backward compatibility
+* Avoid unnecessary redesigns
+* Focus on functionality first
+* Build scalable component architecture
+
+---
+
+# TARGET UI CAPABILITIES
+
+---
+
+The UI must now support the following workflows:
+
+---
+
+## 1. REPOSITORY INGESTION UI
+
+---
+
+Add a section/page for repository ingestion.
+
+User should be able to provide:
+
+1. Local repository path
+2. Mounted repository path
+3. Git repository URL
+4. Branch name
+5. Authentication fields (optional placeholders)
+
+Example fields:
+
+* Repo Type Dropdown
+* Repo Path Input
+* Git URL Input
+* Branch Input
+* Scan Button
+
+---
+
+## 2. SWAGGER INGESTION UI
+
+---
+
+Add UI for Swagger/OpenAPI ingestion.
+
+Inputs:
+
+* Swagger URL
+* Upload JSON file option
+
+Actions:
+
+* Fetch and parse swagger
+* Show extracted APIs
+* Store into Context Engine
+
+---
+
+## 3. CONTEXT VISIBILITY DASHBOARD
+
+---
+
+Create a Context Dashboard.
+
+The dashboard must display:
+
+* Extracted APIs
+* Controllers
+* DTOs
+* Validation rules
+* Existing BDD patterns
+* Existing test cases
+* Retrieved context chunks
+
+This dashboard is critical for debugging LLM context quality.
+
+---
+
+## 4. BDD GENERATION UI ENHANCEMENTS
+
+---
+
+Enhance existing BDD generation UI.
+
+Add:
+
+* Context source selection
+* API selection
+* Retrieved context preview
+* Existing BDD reuse toggle
+* Edge case generation toggle
+
+Display:
+
+* Generated feature files
+* Scenario grouping
+* Reused patterns
+
+---
+
+## 5. TEST CASE GENERATION UI ENHANCEMENTS
+
+---
+
+Enhance test case generation UI.
+
+Add:
+
+* API selection
+* Validation-aware generation toggle
+* Historical test reuse toggle
+* Edge case depth selection
+
+Display:
+
+* Structured generated test cases
+* Positive/negative grouping
+* Validation mapping
+
+---
+
+## 6. LIVE TESTING UI ENHANCEMENTS
+
+---
+
+Enhance Postman-like execution UI.
+
+Add:
+
+* Context-linked API selection
+* Auto-generated payload suggestions
+* Saved payload history
+* Validation preview
+* Response validation summary
+
+Display:
+
+* Request
+* Response
+* Timing
+* Status
+* Validation result
+
+---
+
+## 7. CONTEXT PROCESSING STATUS
+
+---
+
+Add processing indicators for:
+
+* Repo scanning
+* Swagger ingestion
+* Embedding generation
+* Context indexing
+* Retrieval completion
+* LLM generation
+
+Use:
+
+* progress indicators
+* loading states
+* async polling
+
+---
+
+# FRONTEND ARCHITECTURE REQUIREMENTS
+
+---
+
+Refactor UI into modular architecture.
+
+Suggested structure:
+
+src/
+├── components/
+├── pages/
+├── services/
+├── hooks/
+├── context/
+├── api/
+├── utils/
+├── models/
+
+---
+
+# API INTEGRATION REQUIREMENTS
+
+---
+
+Integrate with backend APIs:
+
+POST /ingest-repository
+POST /ingest-swagger
+POST /generate-bdd
+POST /generate-testcases
+POST /run-test
+GET /context/apis
+GET /context/bdd
+GET /context/validations
+
+---
+
+# UX REQUIREMENTS
+
+---
+
+The UI should clearly communicate:
+
+1. What context is being used
+2. What was retrieved for LLM
+3. Why generation succeeded/failed
+4. Which sources contributed to output
+
+The user must be able to debug context quality visually.
+
+---
+
+# IMPORTANT DESIGN PRINCIPLE
+
+---
+
+The UI should evolve from:
+"Simple generator UI"
+
+to:
+"AI Context Orchestration Dashboard"
+
+---
+
+# IMPLEMENTATION STYLE
+
+---
+
+When modifying code:
+
+1. Analyze existing components first
+2. Reuse current layouts
+3. Extend existing APIs
+4. Avoid duplicate components
+5. Keep state management clean
+6. Use reusable hooks/services
+
+---
+
+# RESPONSE EXPECTATIONS
+
+---
+
+When helping:
+
+1. First analyze existing UI structure
+2. Identify reusable components
+3. Identify weak areas
+4. Suggest incremental modifications
+5. Then generate implementation code
+
+Do NOT immediately rewrite the whole frontend.
+
+---
+
+# FIRST TASK
+
+---
+
+Start by:
+
+1. Analyzing the current UI structure
+2. Identifying where Context Dashboard should integrate
+3. Identifying where repo ingestion should integrate
+4. Designing updated component hierarchy
+5. Then implement:
+
+   * Repository ingestion form
+   * Swagger ingestion form
+   * Context Dashboard skeleton
+   * Updated navigation/sidebar
+
+Proceed incrementally and preserve existing functionality.
