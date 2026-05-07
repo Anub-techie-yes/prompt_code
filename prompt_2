@@ -1,0 +1,480 @@
+The current implementation is working partially and the architecture direction is correct, but the context extraction and generation quality are still too generic.
+
+The main issue now is NOT repository scanning itself.
+
+The real issue is:
+
+* extracting the BEST possible contextual information
+* filtering noise
+* understanding relationships between files
+* generating intelligent structured context for LLM generation
+
+We now need to evolve the implementation from:
+"basic repository scanning"
+
+to:
+"semantic context intelligence engine"
+
+---
+
+# VERY IMPORTANT
+
+---
+
+DO NOT rewrite existing modules.
+
+The current implementation already has:
+
+* repository scanning
+* swagger ingestion
+* BDD generation
+* test case generation
+* UI integration
+
+The goal now is to ENHANCE intelligence and context quality.
+
+Focus on:
+
+* better extraction
+* smarter filtering
+* relationship mapping
+* context ranking
+* structured generation inputs
+
+---
+
+# CORE REQUIREMENT — CONTEXT INTELLIGENCE LAYER
+
+---
+
+Introduce a new architectural layer:
+
+context_intelligence/
+
+This layer sits BETWEEN:
+
+* raw repository scanning
+* LLM generation
+
+Purpose:
+Transform raw extracted files into highly relevant structured contextual knowledge.
+
+---
+
+# PROBLEM TO SOLVE
+
+---
+
+Currently the scanner extracts files but does not understand:
+
+* which files are actually important
+* which request payloads are realistic
+* which fields are mandatory
+* how existing BDD patterns are structured
+* what combinations are commonly tested
+* which validations matter most
+* how controllers/services relate to tests
+
+This intelligence layer must solve that.
+
+---
+
+# BDD GENERATION IMPROVEMENTS
+
+---
+
+The BDD generator must now deeply understand:
+
+1. Existing BDD folder structure
+2. Existing feature writing style
+3. Existing step patterns
+4. Existing naming conventions
+5. Existing scenario structures
+6. Existing Given/When/Then formatting
+7. Existing tags and metadata
+8. Existing reusable flows
+
+---
+
+# REQUIRED BDD CONTEXT EXTRACTION
+
+---
+
+When scanning BDD folders:
+
+DO NOT just extract raw text.
+
+Build structured intelligence models:
+
+{
+"feature_name": "",
+"feature_path": "",
+"tags": [],
+"scenario_patterns": [],
+"step_patterns": [],
+"common_flows": [],
+"api_mapping": [],
+"payload_examples": []
+}
+
+---
+
+# BDD PATTERN ANALYSIS
+
+---
+
+Implement pattern analysis across ALL feature files.
+
+Detect:
+
+* repeated scenario flows
+* repeated step patterns
+* common request flows
+* common validation checks
+* common auth flows
+* common error patterns
+
+Build reusable pattern libraries.
+
+---
+
+# BDD STRUCTURE LEARNING
+
+---
+
+The generator must learn:
+
+* how scenarios are grouped
+* naming conventions
+* indentation style
+* tag structure
+* step granularity
+* organization-specific BDD style
+
+Generated BDD files must MATCH existing project style.
+
+---
+
+# JSON OUTPUT REQUIREMENT
+
+---
+
+For BDD generation UI:
+
+The UI must return downloadable structured artifacts:
+
+1. Request JSON
+2. Response JSON
+3. DB request JSON
+4. DB response JSON
+5. Final generated feature file
+
+Implement downloadable export support.
+
+---
+
+# TEST CASE GENERATION IMPROVEMENTS
+
+---
+
+Current issue:
+Swagger/spec.json only gives HIGH-LEVEL structure.
+
+It does NOT provide:
+
+* realistic field values
+* combinations
+* business rules
+* edge-case patterns
+* test payload intelligence
+
+This information must now come from:
+
+* src/test
+* existing API tests
+* integration tests
+* service layer
+* controller layer
+* DTO validations
+
+---
+
+# REQUIRED TEST CONTEXT EXTRACTION
+
+---
+
+Enhance repository scanning to deeply analyze:
+
+src/test/
+
+Extract:
+
+* test payloads
+* mock requests
+* mock responses
+* builders
+* fixtures
+* parameterized tests
+* edge-case tests
+* assertion patterns
+
+---
+
+# SMART PAYLOAD EXTRACTION
+
+---
+
+Implement extraction of realistic payload examples from tests.
+
+Example:
+
+If tests contain:
+
+UserRequest.builder()
+.name("John")
+.email("[john@gmail.com](mailto:john@gmail.com)")
+
+Then extract:
+
+{
+"name": "John",
+"email": "[john@gmail.com](mailto:john@gmail.com)"
+}
+
+Build payload example repositories.
+
+---
+
+# FIELD INTELLIGENCE REQUIREMENT
+
+---
+
+The system must infer:
+
+* required fields
+* optional fields
+* field formats
+* valid combinations
+* invalid combinations
+* boundary values
+* common real values
+
+Sources:
+
+* DTO validations
+* test payloads
+* assertions
+* service logic
+* controller logic
+
+---
+
+# SERVICE + CONTROLLER ANALYSIS
+
+---
+
+Implement deeper code intelligence.
+
+Analyze:
+
+* controller methods
+* service methods
+* validation logic
+* conditional branches
+* exception handling
+
+Extract:
+
+* business rules
+* failure conditions
+* validation paths
+* edge scenarios
+
+---
+
+# TEST CASE GENERATION LOGIC
+
+---
+
+Generated test cases must now include:
+
+1. realistic payloads
+2. valid combinations
+3. invalid combinations
+4. missing required field cases
+5. business validation failures
+6. service-layer edge cases
+7. controller validation failures
+8. authorization scenarios
+9. malformed payloads
+10. null handling
+
+---
+
+# USER-DRIVEN FIELD TESTING
+
+---
+
+Allow users to specify:
+
+* specific fields
+* combinations of fields
+* fields to mutate
+
+The generator must:
+
+* preserve mandatory fields
+* maintain payload validity
+* intelligently mutate target fields only
+
+---
+
+# CONTEXT RANKING SYSTEM
+
+---
+
+Introduce relevance scoring.
+
+Not all extracted context should go to LLM.
+
+Implement scoring:
+
+HIGH PRIORITY:
+
+* existing feature files
+* integration tests
+* DTO validations
+* request builders
+* controller mappings
+
+MEDIUM:
+
+* service logic
+* utility builders
+
+LOW:
+
+* unrelated tests
+* configs
+* generic utils
+
+---
+
+# CONTEXT RELATIONSHIP GRAPH
+
+---
+
+Build relationships:
+
+API
+-> DTO
+-> validations
+-> controller
+-> service
+-> tests
+-> BDD scenarios
+-> payload examples
+
+The generation engine should retrieve related nodes only.
+
+---
+
+# RETRIEVAL IMPROVEMENTS
+
+---
+
+Current retrieval is too broad.
+
+Improve retrieval by:
+
+* endpoint mapping
+* DTO mapping
+* feature similarity
+* payload similarity
+* validation similarity
+
+Retrieve only highly relevant chunks.
+
+---
+
+# UI IMPROVEMENTS
+
+---
+
+Enhance UI to show:
+
+1. extracted payload examples
+2. detected validations
+3. detected BDD patterns
+4. related test classes
+5. context relevance score
+6. retrieved chunks before generation
+
+The user should visually understand WHY the LLM generated a particular output.
+
+---
+
+# IMPLEMENTATION REQUIREMENTS
+
+---
+
+Add new modules:
+
+context_intelligence/
+├── bdd_pattern_analyzer/
+├── payload_extractor/
+├── validation_extractor/
+├── test_pattern_analyzer/
+├── relationship_mapper/
+├── context_ranker/
+
+---
+
+# IMPORTANT
+
+---
+
+DO NOT generate simplistic regex-only solutions.
+
+Implement structured parsing and semantic analysis.
+
+Use:
+
+* AST parsing where possible
+* structured extraction
+* intermediate models
+* reusable intelligence services
+
+---
+
+# RESPONSE STYLE
+
+---
+
+When modifying code:
+
+1. First analyze existing implementation
+2. Explain architectural weaknesses
+3. Explain proposed intelligence improvements
+4. Then implement incrementally
+5. Keep compatibility with existing flows
+
+---
+
+# FIRST TASK
+
+---
+
+Start by implementing:
+
+1. context_intelligence module
+2. BDD pattern analyzer
+3. payload extraction engine from src/test
+4. DTO validation intelligence extractor
+5. context relevance ranking system
+
+Then integrate these into:
+
+* BDD generation
+* test case generation
+* UI context dashboard
