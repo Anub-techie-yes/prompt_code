@@ -1,0 +1,65 @@
+Build a production-grade AI repository scanner and architecture understanding system in Python.
+
+Requirements:
+
+1. Scan entire repository intelligently
+2. Ignore irrelevant/generated files
+3. Detect language/framework automatically
+4. Parse AST using tree-sitter
+5. Build dependency graph
+6. Extract:
+   - controllers
+   - services
+   - repositories
+   - entities
+   - APIs
+   - event consumers/producers
+   - configs
+   - workflows
+7. Rank important files
+8. Use LLM internally for:
+   - file summarization
+   - business logic understanding
+   - architecture extraction
+   - flow extraction
+9. Store:
+   - embeddings in Qdrant/Milvus
+   - relationships in Neo4j
+10. Build context memory optimized for downstream AI agents
+11. Support:
+   - Spring Boot
+   - Node.js
+   - React
+   - Python
+12. Use FastAPI
+13. Use asyncio for parallel scanning
+14. Create modular architecture
+15. Add plugin-based parser system
+16. Generate:
+   - architecture summary
+   - API flow graph
+   - dependency graph
+   - business flow
+   - semantic memory
+17. Create production-grade folder structure
+18. Add logging, retries, batching, token optimization
+19. Add chunking strategy
+20. Add semantic compression layer
+
+Generate:
+- complete codebase
+- architecture
+- data models
+- prompts
+- orchestration pipeline
+- storage layer
+- API endpoints
+- async execution
+- example outputs
+- docker setup
+- vector DB integration
+- graph DB integration
+- extensible parser framework
+- context retrieval system
+
+Code should be clean, enterprise-grade, extensible, and production-ready.
