@@ -1,0 +1,80 @@
+You are a senior software architect and staff-level engineer.
+
+Your task is to analyze my current codebase and incrementally upgrade my existing RAG pipeline into an advanced Field Intelligence + Hybrid Retrieval system.
+
+IMPORTANT CONSTRAINTS:
+- DO NOT break existing functionality
+- DO NOT rewrite entire modules unless necessary
+- Prefer incremental, modular improvements
+- Maintain backward compatibility
+- Follow existing project structure and coding style
+
+CURRENT SYSTEM CONTEXT:
+- I already have a RAG pipeline implemented
+- Retrieval is based on (application_id, field_id)
+- It uses a vector database for semantic search
+- LLM is used for generating outputs (test cases etc.)
+
+TARGET SYSTEM:
+Upgrade to include:
+1. Field Intelligence Layer (structured JSON per field)
+2. Dependency Graph (field relationships)
+3. Hybrid Retrieval (vector + graph traversal)
+4. Context Builder (structured prompt input)
+5. Improved test generation quality
+
+EXECUTION STRATEGY:
+Follow these steps strictly:
+
+STEP 1: Analyze current RAG pipeline
+- Locate retrieval logic
+- Locate embedding generation
+- Locate LLM invocation
+- Summarize flow before making changes
+
+STEP 2: Introduce Field Intelligence (non-breaking)
+- Extend existing data model to include:
+  - constraints
+  - dependencies
+  - validations
+  - usage
+- Do NOT remove old fields
+
+STEP 3: Modify ingestion pipeline
+- Add a transformation layer that converts raw content into structured field intelligence JSON
+- Keep raw data intact
+
+STEP 4: Add dependency graph (start in-memory)
+- Build a simple graph structure mapping field relationships
+- Populate from extracted field intelligence
+
+STEP 5: Upgrade retrieval function
+- Combine:
+  - existing vector search
+  - graph-based dependency expansion
+- Return structured object instead of plain text
+
+STEP 6: Add context builder layer
+- Convert retrieved structured data into LLM-ready context
+- Ensure concise but rich information
+
+STEP 7: Improve LLM prompt usage
+- Replace generic prompts with structured prompts using field context
+- Focus on test case generation improvements
+
+STEP 8: Add safeguards
+- Limit context size
+- Handle missing dependencies gracefully
+
+OUTPUT FORMAT:
+For each step:
+- Show files to modify
+- Show exact code changes (diff or snippet)
+- Explain why change is needed
+
+DO NOT:
+- Skip steps
+- Make assumptions without checking code
+- Over-engineer
+
+Start with STEP 1: Analyze my current RAG pipeline.
