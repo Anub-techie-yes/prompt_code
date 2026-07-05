@@ -1,25 +1,505 @@
-                    Test Specification
-                           │
-                           ▼
-                  Planner Agent (LLM)
-                           │
-      ┌────────────────────┼─────────────────────┐
-      ▼                    ▼                     ▼
- API Executor        Mongo Agent          Application Agent
-(Postman/Newman)     (Before/After)      (REST/UI/Logs)
-      │                    │                     │
-      └────────────────────┼─────────────────────┘
-                           ▼
-                   Evidence Collector
-                           │
-                           ▼
-                    Difference Engine
-                           │
-                           ▼
-                    Observation Agent
-                           │
-                           ▼
-                 Confluence Publisher
-                           │
-                           ▼
-                      Final Report
+You are a Principal Software Architect, Senior AI Engineer, QA Automation Lead, and Platform Engineer.
+
+Your task is to build from scratch an enterprise-grade AI-powered Test Execution Platform.
+
+This is NOT a demo project.
+
+The project must be production quality.
+
+===========================
+OBJECTIVE
+===========================
+
+The system should execute an entire API test case automatically.
+
+Given a single test definition, the platform must
+
+• execute APIs
+• capture request/response
+• capture before/after MongoDB state
+• compare objects
+• generate differences
+• create human-readable observations
+• generate evidence
+• publish results to Confluence
+
+The tester should never manually open Postman or MongoDB.
+
+Everything should be automatic.
+
+===========================
+ARCHITECTURE
+===========================
+
+Use Clean Architecture.
+
+Separate
+
+Application
+
+Domain
+
+Infrastructure
+
+Agents
+
+Shared
+
+Plugins
+
+Repositories
+
+Configurations
+
+No business logic inside controllers.
+
+Everything must be dependency injected.
+
+Follow SOLID principles.
+
+Every module should be replaceable.
+
+===========================
+TECH STACK
+===========================
+
+Backend:
+Python
+
+FastAPI
+
+Pydantic
+
+AsyncIO
+
+MongoDB
+
+Playwright
+
+LangGraph (or your own workflow engine)
+
+OpenAI-compatible LLM interface
+
+Confluence REST API
+
+Docker
+
+Redis (optional)
+
+SQLite for execution history
+
+===========================
+WORKFLOW
+===========================
+
+User provides
+
+TestCase.yaml
+
+↓
+
+Planner Agent
+
+↓
+
+Execution Plan
+
+↓
+
+Execute API
+
+↓
+
+Capture Request
+
+↓
+
+Capture Response
+
+↓
+
+Capture Mongo Before
+
+↓
+
+Capture Mongo After
+
+↓
+
+Compare
+
+↓
+
+Generate Observation
+
+↓
+
+Generate Markdown Report
+
+↓
+
+Generate HTML Report
+
+↓
+
+Update Confluence
+
+↓
+
+Save everything
+
+===========================
+TEST CASE FORMAT
+===========================
+
+Design your own YAML DSL.
+
+Support
+
+API definitions
+
+Variables
+
+Environment
+
+Authentication
+
+Mongo collections
+
+Query templates
+
+Expected values
+
+Fields to compare
+
+Fields to ignore
+
+Application checks
+
+Assertions
+
+Dependencies
+
+Loops
+
+Reusable steps
+
+Variables from previous responses
+
+===========================
+PLANNER AGENT
+===========================
+
+The planner should convert YAML into executable tasks.
+
+Each task should be independent.
+
+Example
+
+Execute API
+
+Capture DB
+
+Compare DB
+
+Publish Report
+
+The planner should support adding new task types later.
+
+===========================
+API EXECUTION AGENT
+===========================
+
+Support
+
+REST
+
+POST
+
+GET
+
+PUT
+
+PATCH
+
+DELETE
+
+Authentication
+
+Bearer
+
+Basic
+
+API Key
+
+OAuth
+
+Capture
+
+headers
+
+body
+
+status
+
+latency
+
+response
+
+errors
+
+===========================
+MONGODB AGENT
+===========================
+
+Connect using configuration.
+
+Support multiple databases.
+
+Before API execution
+
+capture matching document.
+
+After execution
+
+capture again.
+
+Store
+
+raw json
+
+formatted json
+
+Support nested objects.
+
+===========================
+DIFFERENCE ENGINE
+===========================
+
+Perform recursive object comparison.
+
+Support
+
+nested objects
+
+arrays
+
+lists
+
+maps
+
+Ignore configured fields.
+
+Example
+
+updatedAt
+
+_id
+
+timestamp
+
+version
+
+Only show meaningful changes.
+
+Generate
+
+field
+
+old value
+
+new value
+
+type of change
+
+===========================
+OBSERVATION AGENT
+===========================
+
+Input
+
+Request
+
+Response
+
+Before
+
+After
+
+Difference
+
+Assertions
+
+Generate
+
+Summary
+
+Observations
+
+Potential defects
+
+Unexpected changes
+
+Warnings
+
+Pass/Fail recommendation
+
+===========================
+REPORT ENGINE
+===========================
+
+Generate
+
+Markdown
+
+HTML
+
+JSON
+
+PDF
+
+Store all artifacts.
+
+===========================
+CONFLUENCE
+===========================
+
+Publish automatically.
+
+Generate tables.
+
+Attach
+
+request
+
+response
+
+json
+
+report
+
+comparison
+
+Support update of existing page.
+
+===========================
+PLUGIN SYSTEM
+===========================
+
+Every external system should be a plugin.
+
+Examples
+
+Mongo
+
+Redis
+
+Kafka
+
+Oracle
+
+Elastic
+
+Splunk
+
+REST
+
+SOAP
+
+GraphQL
+
+Each plugin should implement
+
+connect()
+
+capture()
+
+compare()
+
+cleanup()
+
+===========================
+LLM
+===========================
+
+The LLM should never execute business logic.
+
+It should only
+
+plan
+
+reason
+
+summarize
+
+generate observations
+
+Everything deterministic must be implemented using code.
+
+===========================
+PROJECT STRUCTURE
+===========================
+
+Generate a professional folder structure.
+
+Every package should include
+
+README
+
+tests
+
+interfaces
+
+implementation
+
+models
+
+exceptions
+
+configuration
+
+===========================
+QUALITY
+===========================
+
+Type hints everywhere.
+
+Logging.
+
+Retry.
+
+Timeout.
+
+Circuit breaker.
+
+Unit tests.
+
+Integration tests.
+
+Mock tests.
+
+CI pipeline.
+
+Docker compose.
+
+Environment configs.
+
+Sample datasets.
+
+===========================
+DELIVERABLES
+===========================
+
+Generate the entire project.
+
+Every file should contain production-ready code.
+
+Explain every architectural decision.
+
+Never leave TODOs.
+
+Do not generate placeholders.
+
+Code should compile immediately.
+
+Implement one module completely before moving to the next.
