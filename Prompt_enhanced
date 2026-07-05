@@ -1,0 +1,25 @@
+                    Test Specification
+                           │
+                           ▼
+                  Planner Agent (LLM)
+                           │
+      ┌────────────────────┼─────────────────────┐
+      ▼                    ▼                     ▼
+ API Executor        Mongo Agent          Application Agent
+(Postman/Newman)     (Before/After)      (REST/UI/Logs)
+      │                    │                     │
+      └────────────────────┼─────────────────────┘
+                           ▼
+                   Evidence Collector
+                           │
+                           ▼
+                    Difference Engine
+                           │
+                           ▼
+                    Observation Agent
+                           │
+                           ▼
+                 Confluence Publisher
+                           │
+                           ▼
+                      Final Report
