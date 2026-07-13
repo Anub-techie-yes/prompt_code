@@ -1,80 +1,549 @@
-You are a senior software architect and staff-level engineer.
+You are a Principal AI Architect, Staff Software Engineer, Senior ML Engineer, Senior Spring Boot Architect, and QA Automation Expert.
 
-Your task is to analyze my current codebase and incrementally upgrade my existing RAG pipeline into an advanced Field Intelligence + Hybrid Retrieval system.
+Your task is to build a COMPLETE production-ready Intelligent Test Recommendation Platform.
 
-IMPORTANT CONSTRAINTS:
-- DO NOT break existing functionality
-- DO NOT rewrite entire modules unless necessary
-- Prefer incremental, modular improvements
-- Maintain backward compatibility
-- Follow existing project structure and coding style
+This should be a real enterprise-grade application, not a tutorial or toy project.
 
-CURRENT SYSTEM CONTEXT:
-- I already have a RAG pipeline implemented
-- Retrieval is based on (application_id, field_id)
-- It uses a vector database for semantic search
-- LLM is used for generating outputs (test cases etc.)
+====================================================
 
-TARGET SYSTEM:
-Upgrade to include:
-1. Field Intelligence Layer (structured JSON per field)
-2. Dependency Graph (field relationships)
-3. Hybrid Retrieval (vector + graph traversal)
-4. Context Builder (structured prompt input)
-5. Improved test generation quality
+PROJECT GOAL
 
-EXECUTION STRATEGY:
-Follow these steps strictly:
+Given a code change, API change, swagger change, request/response, or pull request,
 
-STEP 1: Analyze current RAG pipeline
-- Locate retrieval logic
-- Locate embedding generation
-- Locate LLM invocation
-- Summarize flow before making changes
+the system should intelligently recommend ONLY the regression test cases that need to be executed.
 
-STEP 2: Introduce Field Intelligence (non-breaking)
-- Extend existing data model to include:
-  - constraints
-  - dependencies
-  - validations
-  - usage
-- Do NOT remove old fields
+Instead of executing 1500 tests,
 
-STEP 3: Modify ingestion pipeline
-- Add a transformation layer that converts raw content into structured field intelligence JSON
-- Keep raw data intact
+it should recommend around 20-40 highly relevant tests.
 
-STEP 4: Add dependency graph (start in-memory)
-- Build a simple graph structure mapping field relationships
-- Populate from extracted field intelligence
+The recommendations should use semantic similarity instead of keyword matching.
 
-STEP 5: Upgrade retrieval function
-- Combine:
-  - existing vector search
-  - graph-based dependency expansion
-- Return structured object instead of plain text
+====================================================
 
-STEP 6: Add context builder layer
-- Convert retrieved structured data into LLM-ready context
-- Ensure concise but rich information
+ARCHITECTURE
 
-STEP 7: Improve LLM prompt usage
-- Replace generic prompts with structured prompts using field context
-- Focus on test case generation improvements
+Frontend
+---------
+React + Vite + Material UI
 
-STEP 8: Add safeguards
-- Limit context size
-- Handle missing dependencies gracefully
+Backend
+--------
+Spring Boot 3
+Java 21
 
-OUTPUT FORMAT:
-For each step:
-- Show files to modify
-- Show exact code changes (diff or snippet)
-- Explain why change is needed
+AI Service
+----------
+Python FastAPI
 
-DO NOT:
-- Skip steps
-- Make assumptions without checking code
-- Over-engineer
+Sentence Transformers
 
-Start with STEP 1: Analyze my current RAG pipeline.
+Vector Database
+---------------
+Qdrant
+
+Database
+--------
+MongoDB
+
+Optional
+---------
+Redis Cache
+
+Docker Compose
+
+====================================================
+
+SYSTEM FLOW
+
+Developer changes code
+
+↓
+
+Webhook triggers
+
+↓
+
+Spring Boot receives commit
+
+↓
+
+Collect
+
+Changed Files
+
+Git Diff
+
+Swagger
+
+API Endpoint
+
+Controller
+
+Service
+
+Repository
+
+↓
+
+Generate semantic description
+
+↓
+
+Python Embedding Service
+
+↓
+
+Embedding Vector
+
+↓
+
+Search Qdrant
+
+↓
+
+Find similar APIs
+
+↓
+
+Retrieve historical execution
+
+↓
+
+Rank historical test cases
+
+↓
+
+Generate recommendations
+
+↓
+
+Display confidence score
+
+↓
+
+Return JSON
+
+====================================================
+
+AI EMBEDDING MODEL
+
+Use
+
+BAAI/bge-base-en-v1.5
+
+Allow changing models through configuration.
+
+Alternative support
+
+all-MiniLM-L6-v2
+
+e5-large-v2
+
+====================================================
+
+VECTOR DATABASE
+
+Use Qdrant.
+
+Collections
+
+apis
+
+testcases
+
+swagger
+
+executions
+
+bug_history
+
+Every object should contain
+
+id
+
+embedding
+
+metadata
+
+tags
+
+team
+
+service
+
+module
+
+timestamp
+
+====================================================
+
+MONGODB SCHEMA
+
+Collections
+
+test_cases
+
+api_history
+
+execution_history
+
+swagger_versions
+
+git_changes
+
+recommendations
+
+====================================================
+
+INGESTION
+
+Implement ingestion pipelines for
+
+Swagger/OpenAPI
+
+Postman Collections
+
+JUnit Reports
+
+BDD Feature Files
+
+Cucumber
+
+Git Repository
+
+Spring Controllers
+
+Java Methods
+
+JavaDoc
+
+README
+
+Confluence markdown
+
+====================================================
+
+SPRING BOOT FEATURES
+
+Implement
+
+Authentication
+
+JWT
+
+Swagger UI
+
+OpenAPI
+
+Actuator
+
+Micrometer
+
+Logging
+
+Global Exception Handler
+
+Validation
+
+Retry
+
+Rate Limiter
+
+Health Check
+
+====================================================
+
+AI FEATURES
+
+Generate embeddings for
+
+API descriptions
+
+Swagger
+
+Controller names
+
+JavaDocs
+
+Test descriptions
+
+BDD scenarios
+
+Error messages
+
+Mongo schema
+
+====================================================
+
+SIMILARITY SEARCH
+
+When
+
+POST /payment
+
+changes
+
+Search similar endpoints
+
+POST /payment
+
+POST /checkout
+
+POST /wallet
+
+Return
+
+Similarity Score
+
+Historical Failures
+
+Frequently failing tests
+
+Regression importance
+
+====================================================
+
+RECOMMENDATION ENGINE
+
+Ranking Formula
+
+Similarity
+
++
+
+Historical Failure Rate
+
++
+
+Recent Failures
+
++
+
+Business Criticality
+
++
+
+Code Coverage
+
++
+
+Execution Time
+
+Return
+
+Top N tests
+
+====================================================
+
+CONFIDENCE SCORE
+
+Calculate confidence
+
+0-100%
+
+based on
+
+semantic similarity
+
+historical success
+
+coverage
+
+feature overlap
+
+====================================================
+
+DASHBOARD
+
+Beautiful enterprise dashboard
+
+Show
+
+Recommended Tests
+
+Confidence
+
+Affected APIs
+
+Changed Files
+
+Swagger Difference
+
+Execution Time
+
+Historical Failures
+
+Dependency Graph
+
+Interactive charts
+
+Filtering
+
+Search
+
+Dark Mode
+
+====================================================
+
+ADVANCED AI FEATURES
+
+Detect
+
+Breaking API changes
+
+Duplicate tests
+
+Missing regression
+
+Unused tests
+
+Dead APIs
+
+Low coverage
+
+Generate
+
+Suggested new tests
+
+====================================================
+
+LLM FEATURES
+
+Use LLM only AFTER retrieval.
+
+Prompt should include
+
+Swagger
+
+Historical failures
+
+Previous executions
+
+Relevant tests
+
+Changed files
+
+Git diff
+
+Generate
+
+Why each test is recommended.
+
+====================================================
+
+OUTPUT
+
+Each recommendation should look like
+
+{
+  "testId": "...",
+  "testName": "...",
+  "confidence": 96.5,
+  "reason": "...",
+  "affectedEndpoints": [],
+  "estimatedExecutionTime": "...",
+  "historicalFailures": 12,
+  "priority": "HIGH"
+}
+
+====================================================
+
+SPRING MODULES
+
+api-service
+
+embedding-service-client
+
+recommendation-engine
+
+swagger-parser
+
+git-parser
+
+history-service
+
+ranking-engine
+
+dashboard-service
+
+authentication
+
+====================================================
+
+PYTHON MODULES
+
+embedding_service
+
+vector_service
+
+similarity_service
+
+reranker
+
+llm_service
+
+====================================================
+
+REACT PAGES
+
+Dashboard
+
+Recommendations
+
+API Explorer
+
+Swagger Viewer
+
+Historical Executions
+
+Analytics
+
+Settings
+
+====================================================
+
+QUALITY
+
+Write clean architecture.
+
+Hexagonal architecture.
+
+SOLID principles.
+
+Unit tests.
+
+Integration tests.
+
+Docker Compose.
+
+CI/CD pipeline.
+
+README.
+
+API Documentation.
+
+Sequence diagrams.
+
+Class diagrams.
+
+Deployment guide.
+
+====================================================
+
+DO NOT GENERATE PLACEHOLDER CODE.
+
+Generate complete working implementation.
+
+Whenever a component depends on another one,
+
+build both.
+
+Never leave TODOs.
+
+Generate production-ready code.
+
+Explain the folder structure before generating code.
+
+Then generate every file until the project is complete.
+
+Continue automatically until every module is finished.
